@@ -1,0 +1,135 @@
+<mat-toolbar color="primary" class="navbar">
+<div>Malsite</div>
+<div>
+  <span>Home</span>
+  <span>About</span>
+  <span>Services</span>
+</div>
+</mat-toolbar>
+
+<section>
+  <mat-card class="card">
+    <form *ngIf="!submitted" [formGroup]="url_data" action="/hi">
+    <div>
+      Malsite is used to detect malware.
+    </div>
+      <mat-form-field class="example-form-field">
+      <span><input formControlName="url" class="url" matInput type="text" placeholder="Enter URL"></span>
+        <!-- <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''"> 
+          <mat-icon>close</mat-icon> 
+        </button> -->
+      </mat-form-field>
+      </form>
+      <span><button mat-raised-button color="primary" (ngSubmit)="onSubmit()" (click)="Submit()">Scan<mat-icon>forwards</mat-icon></button></span>
+  </mat-card>
+  <!-- <form method="POST" action="/foo-route">
+    <input type="text" id="bar" name="bar" />
+    <button type="submit">Send</button>
+ </form>
+     <style>
+       
+     </style> -->
+
+     <mat-card id="err" style="display: none;" class="card">
+      <label id="errmsg">Server Not available , Please try after sometime</label>
+    </mat-card>
+
+    
+  <mat-card class="card">
+      <div id="myData"></div>
+      <p><label id="name"></label><label id="ip"></label></p>
+      <p><img src='../assets/images/passed.png' /><label for="">Server Type gws </label></p>
+      <p><img src='../assets/images/passed.png' /><label for=""> The certificate should be trusted by all major web browsers (all the correct intermediate certificates are installed). </label></p>
+      <p><label id="hname"></label></p>  
+  </mat-card>
+   
+  <mat-card class="card">
+      <p><img src='../assets/images/passed.png' /><label><h3>TLS Certificate (SERVER Certificate)</h3></label></p>
+      <p><label id="cn"></label>
+      <label id="mg"></label><br>
+      <label id="org"></label><br>
+      <label id="loc"></label><br>
+      <label id="vf"></label><br>
+      <label id="iss"></label><br>
+      <label id="srn"></label><br>
+      <label id="fp"></label><br>
+      <label><h4>signature Algorithm : </h4><label id="sigalgo"></label></label><br> 
+    </p>
+  </mat-card>
+
+  <!-- intermediate certificate -->
+
+   <mat-card class="card"> <!-- id="ca" -->
+    <p><img src='../assets/images/passed.png' /><label><h3>intermediate Certificate</h3></label></p>
+    <p><label id="intcn"></label>
+    <label id="intorg"></label><br>
+    <label id="intloc"></label><br>
+    <label id="intvf"></label><br>
+    <!-- <label><h4>ISSUER :</h4><label id="iss"></label></label><br>
+    <label><h4>serial Number : </h4><label id="intsrn"></label></label><br>
+    <label><h4>signature Algorithm : </h4><label id="intsigalgo"></label></label><br> -->
+   </p>
+</mat-card>
+
+<mat-card class="card">
+  <label><img src='../assets/images/passed.png' /><h4>TLS Certificate expiration</h4></label>
+  <label id="exp"></label><br>
+</mat-card>
+      <mat-card class="card">
+      <p><label id="asd"></label></p>
+          
+          <p><label id="protocol"></label></p>
+          <p><label id="family"></label></p>
+
+              <!-- <label >Countries :</label>
+              <ul *ngFor="let item of countryList">
+                <li>
+                  Country Name:{{item.name}}, Code:{{item.code}}
+                </li>
+              </ul>
+
+              <label >PeerCertificate :</label>
+              <h3 *ngFor="let item of cert">
+                  Valid_from:{{item.valid_from}}, valid_to:{{item.valid_to}}
+             </h3>
+
+             <ul>
+              <li *ngFor="let player of players">
+               <h2>{{player.valid_from}}</h2>
+               <p>{{player.valid_to}}</p>
+               {{player.subject}}
+              </li>
+            </ul> -->
+                </mat-card>
+
+                <mat-card class="card">
+                  <p><label id="certinst"></label><br>
+                  <label id="cong"></label>
+                  </p>
+                </mat-card>
+
+                
+
+      <script>
+          fetch('people.json')
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                  appendData(data);
+              })
+              .catch(function (err) {
+                  console.log('error: ' + err);
+              });
+              // console.log(JSON.parse(JSON.stringify(data)));
+          function appendData(data) {
+              var mainContainer = document.getElementById("myData");
+              //for (var i = 0; i < data.length; i++) {
+                  var div = document.createElement("div");
+                  div.innerHTML = 'Subject: ' + data.fingerprint + ' ' + data[1].subjectalname;
+                  mainContainer.appendChild(div);
+            //  }
+          }
+      </script>
+   
+</section>

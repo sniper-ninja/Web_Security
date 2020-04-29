@@ -1,0 +1,9 @@
+[
+    {"name":"India","code":"IN"},
+    {"name":"USA","code":"NY","issuer": {
+        "C": "US",
+        "O": "Google Trust Services",
+        "CN": "GTS CA 1O1"
+      }
+    }
+]

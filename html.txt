@@ -1,0 +1,84 @@
+<mat-toolbar color="primary" class="navbar">
+<div>Malsite</div>
+<div>
+  <span>Home</span>
+  <span>About</span>
+  <span>Services</span>
+</div>
+</mat-toolbar>
+
+<section>
+  <mat-card class="card">
+    <form [formGroup]="url_data" action="/hi">
+    <div>
+      Malsite is used to detect malware.
+    </div>
+      <mat-form-field class="example-form-field">
+      <span><input formControlName="url" class="url" matInput type="text" placeholder="Enter URL"></span>
+        <!-- <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''"> 
+          <mat-icon>close</mat-icon> 
+        </button> -->
+      </mat-form-field>
+      </form>
+      <span><button mat-raised-button color="primary" (click)="Submit()">Scan<mat-icon>forwards</mat-icon></button></span>
+  </mat-card>
+  <!-- <form method="POST" action="/foo-route">
+    <input type="text" id="bar" name="bar" />
+    <button type="submit">Send</button>
+ </form>
+     <style>
+       
+     </style> -->
+  <mat-card class="card">
+      <div id="myData"></div>
+      <p><label id="elem" for="">Authentication :</label><iframe src="../assets/auth.json" frameborder="0" height="auto"
+          width="95%"></iframe></p>
+          <p><label id="certi" for="">Certifcate Detail :</label>
+          <label for="" id="subject"></label>
+          </p>
+          <p><label for="">Protocol used :</label><iframe src="../assets/Protocol.json" frameborder="0" height="auto"
+              width="95%"></iframe></p>
+
+              <label >Countries :</label>
+              <ul *ngFor="let item of countryList">
+                <li>
+                  Country Name:{{item.name}}, Code:{{item.code}}
+                </li>
+              </ul>
+
+              <label >PeerCertificate :</label>
+              <h3 *ngFor="let item of cert">
+                  Valid_from:{{item.valid_from}}, valid_to:{{item.valid_to}}
+             </h3>
+
+             <ul>
+              <li *ngFor="let player of players">
+               <h2>{{player.valid_from}}</h2>
+               <p>{{player.valid_to}}</p>
+               {{player.subject}}
+              </li>
+            </ul>
+<label for="" id="mg"></label>
+                </mat-card>
+      <script>
+          fetch('people.json')
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                  appendData(data);
+              })
+              .catch(function (err) {
+                  console.log('error: ' + err);
+              });
+              // console.log(JSON.parse(JSON.stringify(data)));
+          function appendData(data) {
+              var mainContainer = document.getElementById("myData");
+              //for (var i = 0; i < data.length; i++) {
+                  var div = document.createElement("div");
+                  div.innerHTML = 'Subject: ' + data.fingerprint + ' ' + data[1].subjectalname;
+                  mainContainer.appendChild(div);
+            //  }
+          }
+      </script>
+</section>
